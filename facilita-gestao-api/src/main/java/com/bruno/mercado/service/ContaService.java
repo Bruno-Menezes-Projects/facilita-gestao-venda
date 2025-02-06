@@ -3,6 +3,8 @@ package com.bruno.mercado.service;
 import com.bruno.mercado.model.Conta;
 import com.bruno.mercado.repository.ContaRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
@@ -34,8 +36,12 @@ public class ContaService {
     }
 
     public ResponseEntity<Conta> createConta(Conta conta) {
-        Conta contaSalva = contaRepository.save(conta);
-        return ResponseEntity.ok(contaSalva);
+        if (conta != null && conta.getId() == null){
+            Conta contaSalva = contaRepository.save(conta);
+            return ResponseEntity.ok(contaSalva);
+        }
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .header("Erro","O Id não deve ser informado.").build();
     }
 
     public ResponseEntity<Conta> updateConta(Conta conta) {
