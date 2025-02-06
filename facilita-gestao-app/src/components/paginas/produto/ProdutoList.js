@@ -132,9 +132,9 @@ function ProdutoList(){
                     <thead>
                     <tr>
                         <th>Id</th>
-                        <th>Nome</th>
-                        <th>Em estoque</th>
+                        <th>Produto</th>
                         <th>Mínimo esperado</th>
+                        <th>Em estoque</th>
                         <th>Controle de estoque</th>
                         <th>Alterar Produto</th>
                         <th>Estado</th>
@@ -146,8 +146,8 @@ function ProdutoList(){
                             <tr key={produto.idProduto}>
                                 <td className="text-start">{produto.idProduto}</td>
                                 <td className="text-start">{produto.nome}</td>
-                                <td className="text-end">{produto.quantidade}</td>
                                 <td className="text-end">{produto.quantidadeMinima}</td>
+                                <td className="text-end">{produto.quantidade}</td>
                                 <td>
                                     <Stack direction="horizontal" gap={1}>
                                         <div className="ms-auto">
