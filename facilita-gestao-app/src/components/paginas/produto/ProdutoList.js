@@ -3,14 +3,11 @@ import Container from "react-bootstrap/Container";
 import {Link, useLocation} from "react-router-dom";
 import React, {useEffect, useState} from "react";
 import ProdutoApi from "../../api/ProdutoApi";
-import { BsFillPlusCircleFill } from "react-icons/bs";
 import {BsBagXFill, BsBagCheckFill, BsFillPencilFill, BsFillTrashFill} from "react-icons/bs";
-import { BsDashCircleFill } from "react-icons/bs";
-import { BsExclamationTriangleFill, BsExclamationCircle, BsExclamationCircleFill, BsGraphDown, BsXCircleFill } from "react-icons/bs";
-import { BsCheckLg} from "react-icons/bs";
-import { BsSearch } from "react-icons/bs";
-import { BsXCircle } from "react-icons/bs";
-import { BsCheckCircle } from "react-icons/bs";
+import { BsDashCircleFill, BsDashCircle  } from "react-icons/bs";
+import { BsExclamationTriangleFill, BsExclamationCircle, BsExclamationCircleFill, BsGraphDown, BsXCircleFill,
+    BsCheckLg, BsSearch, BsXCircle, BsCheckCircle, BsFillPlusCircleFill, BsFillPlusCircle} from "react-icons/bs";
+import { CiCirclePlus } from "react-icons/ci";
 
 
 function ProdutoList(){
@@ -113,7 +110,7 @@ function ProdutoList(){
                 <br/>
                 <Row>
                     <h5 className="tituloPesquisa">Pesquisar produto</h5>
-                    <Col xl={8}>
+                    <Col xl={9}>
                         <Form onChange={submitSearchProduto}>
                             <Form.Group className="mb-3" controlId="searchText">
                                 <Form.Control type="text" placeholder="Nome do produto"
@@ -123,7 +120,11 @@ function ProdutoList(){
                     </Col>
                     <Col xl={3}>
                         <Link to="/produto/incluir">
-                            <Button>Adicionar Produto +</Button>
+                            <Button>
+                                Adicionar Produto
+                                 &nbsp;
+                                <BsFillPlusCircleFill/>
+                            </Button>
                         </Link>
                     </Col>
                 </Row>
@@ -151,9 +152,9 @@ function ProdutoList(){
                                 <td>
                                     <Stack direction="horizontal" gap={1}>
                                         <div className="ms-auto">
-                                            <Button variant="danger" size="sm"
+                                            <Button variant="warning" size="sm"
                                                     onClick={() => decrementarQuantEstoque(produto)}>
-                                                Subtrair <BsDashCircleFill/>
+                                                Subtrair <BsDashCircle/>
                                             </Button>
                                         </div>
                                         <div className="ms-auto">
@@ -167,7 +168,7 @@ function ProdutoList(){
                                 <td>
                                     <Stack direction="horizontal" gap={1}>
                                         <div className="ms-auto">
-                                            <Button variant="danger" size="sm"
+                                            <Button variant="warning" size="sm"
                                                     onClick={() => handleShow(produto.idProduto)}>
                                                 Excluir <BsFillTrashFill/>
                                             </Button>
@@ -217,13 +218,13 @@ function ProdutoList(){
                     <Modal.Header closeButton>
                         <Modal.Title>Confirmação</Modal.Title>
                     </Modal.Header>
-                    <Modal.Body>Confirma a exclusao do Produto <strong>{getProdutoNome(idDelete)}</strong> de Id <strong>{idDelete}</strong>?</Modal.Body>
+                    <Modal.Body className="fs-3">Confirma a <strong className="text-danger">exclusão</strong> do Produto <strong>{getProdutoNome(idDelete)}</strong> de Id <strong>{idDelete}</strong>?</Modal.Body>
                     <Modal.Footer>
-                        <Button variant="secondary" onClick={handleClose}>
-                            Fechar
-                        </Button>
                         <Button variant="danger" onClick={handleExcluir}>
-                            Excluir
+                            Excluir <BsFillTrashFill/>
+                        </Button>
+                        <Button variant="secondary" onClick={handleClose}>
+                            Cancelar
                         </Button>
                     </Modal.Footer>
                 </Modal>

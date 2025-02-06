@@ -197,11 +197,11 @@ function ProdutoForm({id}){
                     </h4>
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="primary" onClick={handleClose}>
-                        Fechar
-                    </Button>
-                    <Button variant="success" onClick={handleAlterar}>
+                    <Button variant="warning" onClick={handleAlterar}>
                         Alterar
+                    </Button>
+                    <Button variant="danger" onClick={handleClose}>
+                        Cancelar
                     </Button>
                 </Modal.Footer>
             </Modal>
