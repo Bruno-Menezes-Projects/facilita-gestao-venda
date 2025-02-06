@@ -123,13 +123,13 @@ function ProdutoForm({id}){
                                 <Stack direction="horizontal" gap={3}>
                                     <div className="p-2">
                                         <Link to="/produto/list">
-                                            <Button variant="danger">
+                                            <Button variant="primary">
                                                 Cancelar
                                             </Button>
                                         </Link>
                                     </div>
                                     <div className="p-2 ms-auto">
-                                        <Button variant="primary" type="submit">
+                                        <Button variant="success" type="submit">
                                             Confirmar
                                         </Button>
                                     </div>
@@ -196,11 +196,12 @@ function ProdutoForm({id}){
                         </strong>
                     </h4>
                 </Modal.Body>
+
                 <Modal.Footer>
-                    <Button variant="warning" onClick={handleAlterar}>
+                    <Button  variant="warning" onClick={handleAlterar}>
                         Alterar
                     </Button>
-                    <Button variant="danger" onClick={handleClose}>
+                    <Button variant="primary" onClick={handleClose}>
                         Cancelar
                     </Button>
                 </Modal.Footer>
