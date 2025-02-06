@@ -64,6 +64,7 @@ function ProdutoList(){
             produtoApi.alterarProduto(produto);
             consultarEPrecherTable();
         }else{
+            setIdDelete(produto.idProduto);
             setShowEsgotado(true);
         }
     }
