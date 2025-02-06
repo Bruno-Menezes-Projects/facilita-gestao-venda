@@ -193,8 +193,6 @@ function ProdutoList(){
                                                                 "danger" :
                                                                 "dark"))}
                                             size="sm" onClick={() => handleShowEstado(produto.idProduto)}>
-                                            <BsSearch/>
-                                            &nbsp;
                                             {produto.quantidade > produto.quantidadeMinima + margem ?
                                                     <BsCheckCircle /> :
                                                     (produto.quantidade >= produto.quantidadeMinima ?
@@ -204,6 +202,8 @@ function ProdutoList(){
                                                                 <BsXCircle />
                                                         )
                                                     )}
+                                            &nbsp;&nbsp;
+                                            <BsSearch/>
                                         </Button>
                                     </div>
                                 </td>
