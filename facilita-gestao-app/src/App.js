@@ -23,20 +23,6 @@ function App() {
           <Routes>
             <Route exact path="" element={<Home/>}  />
 
-            <Route path="/pet" >
-              <Route exact path="" element={<PetList/>}  />
-              <Route exact path="list" element={<PetList/>}  />
-              <Route exact path="incluir" element={<PetIncluir/>}  />
-              <Route exact path="alterar/:id" element={<PetAlterar/>}  />
-            </Route>
-
-            <Route path="/servico" >
-              <Route exact path="" element={<ServicoList/>}  />
-              <Route exact path="list" element={<ServicoList/>}  />
-              <Route exact path="incluir" element={<ServicoIncluir/>}  />
-              <Route exact path="alterar/:id" element={<ServicoAlterar/>}  />
-            </Route>
-
             <Route path="/produto" >
               <Route exact path="" element={<ProdutoList/>}  />
               <Route exact path="list" element={<ProdutoList/>}  />
