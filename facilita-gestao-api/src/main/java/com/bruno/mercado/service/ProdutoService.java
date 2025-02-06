@@ -1,12 +1,14 @@
 package com.bruno.mercado.service;
 
 import com.bruno.mercado.model.Produto;
-import com.bruno.mercado.model.ProdutoDTO;
 import com.bruno.mercado.repository.ProdutoRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -17,7 +19,11 @@ public class ProdutoService {
     private ProdutoRepository produtoRepository;
 
     public List<Produto> getAllProducts() {
-        return produtoRepository.findAll();
+        List<Produto> prods = produtoRepository.findAll();
+        if (prods.isEmpty()) {
+            return new ArrayList<Produto>();
+        }
+        return prods;
     }
 
     public Produto getProductById(Long id) {
@@ -34,12 +40,16 @@ public class ProdutoService {
     }
 
     @Transactional
-    public boolean removeProdutoById(Long id){
-        if(esseProdutoExiste(id)){
+    public ResponseEntity<Produto> removeProdutoById(Long id){
+        Optional<Produto> produtoOptional = produtoRepository.findById(id);
+        if(produtoOptional.isPresent()){
+            Produto prod = produtoOptional.get();
             produtoRepository.deleteById(id);
-            return true;
+            return ResponseEntity.status(HttpStatus.OK)
+                    .header("Mensagem", "Produto removido com sucesso").body(prod);
         }
-        return false;
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .header("Erro", "Produto não encontrado para remoção.").build();
     }
 
     @Transactional

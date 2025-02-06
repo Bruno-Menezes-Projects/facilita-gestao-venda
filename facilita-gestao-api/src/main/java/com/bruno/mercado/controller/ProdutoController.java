@@ -42,7 +42,7 @@ public class ProdutoController {
 
     @Operation(summary = "excluiProdutoById", description = "Exclui o produto pelo Id.")
     @DeleteMapping("/{id}")
-    public boolean excluiProdutoById(@PathVariable Long id) {
+    public ResponseEntity<Produto> excluiProdutoById(@PathVariable Long id) {
         return produtoService.removeProdutoById(id);
     }
 

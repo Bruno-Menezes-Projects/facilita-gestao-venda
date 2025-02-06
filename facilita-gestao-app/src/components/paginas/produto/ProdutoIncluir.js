@@ -4,9 +4,9 @@ import ProdutoForm from "./ProdutoForm";
 function ProdutoIncluir(){
     return(
         <div className={"colorWhite"}>
-            <Link to={"/"}>Home</Link> / <Link to={"/produto/list"}>Produto Lista</Link> / Produto Incluir
+            <Link to={"/"}>Home</Link> / <Link to={"/produto/list"}>Lista Produto</Link> / Incluir Produto
 
-            <h1>Produto Incluir:</h1>
+            <h1>Incluir Produto:</h1>
             <br/>
             <ProdutoForm />
         </div>

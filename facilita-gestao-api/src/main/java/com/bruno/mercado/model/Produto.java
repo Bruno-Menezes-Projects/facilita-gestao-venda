@@ -6,12 +6,6 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-
-
-
 @Data
 @Entity(name = "produto")
 @NoArgsConstructor
@@ -24,18 +18,18 @@ public class Produto {
     @NotNull
     private String nome;
     @NotNull
-    private BigDecimal valor;
-    @NotNull
     private int quantidade;
+    @NotNull
+    private int quantidadeMínima;
 
-    public Produto (String nome, BigDecimal valor, int quantidade) {
+
+    public Produto (String nome, int quantidade) {
         this.nome = nome;
-        this.valor = valor;
         this.quantidade = quantidade;
     }
 
     public Produto clone(){
-        return new Produto(idProduto, nome, valor, quantidade);
+        return new Produto(idProduto, nome, quantidade, quantidadeMínima);
     }
 
 

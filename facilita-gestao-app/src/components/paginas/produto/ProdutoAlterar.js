@@ -6,7 +6,7 @@ function ProdutoAlterar(){
 
     return(
         <div className={"colorWhite"}>
-            <Link to={"/"}>Home</Link> / <Link to={"/produto/list"}>Produto Lista</Link> / Produto Alterar
+            <Link to={"/"}>Home</Link> / <Link to={"/produto/list"}>Lista Produto</Link> / Alterar Produto
 
             <h1>Alterar Produto:</h1>
             <br/>

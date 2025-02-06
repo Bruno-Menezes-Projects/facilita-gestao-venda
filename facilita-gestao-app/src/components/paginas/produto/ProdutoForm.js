@@ -59,28 +59,28 @@ function ProdutoForm({id}){
                         )}
 
                         <Form.Group as={Row} className="mb-3" controlId="nome">
-                            <Form.Label column sm="">
+                            <Form.Label column sm="10">
                                 Nome do produto:
                             </Form.Label>
-                            <Col sm="10">
+                            <Col sm="8">
                                 <Form.Control type="text" placeholder="Nome do produto" defaultValue={nome} onChange={(e) => setNome(e.target.value)} />
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="valor">
-                            <Form.Label column sm="">
+                            <Form.Label column sm="10">
                                 Valor do produto:
                             </Form.Label>
-                            <Col sm="10">
+                            <Col sm="8">
                                 <Form.Control type="text" placeholder="Valor do produto" defaultValue={valor} onChange={(e) => setValor(e.target.value)}/>
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="quantidade">
-                            <Form.Label column sm="">
+                            <Form.Label column sm="10">
                                 Quantidade de estoque:
                             </Form.Label>
-                            <Col sm="10">
+                            <Col sm="8">
                                 <Form.Control type="text" placeholder="Quantidade de estoque" defaultValue={quantidade} onChange={(e) => setQuantidade(e.target.value)}/>
                             </Col>
                         </Form.Group>
