@@ -62,9 +62,8 @@ public class ProdutoService {
             if (produtoExistente != null) {
                 // Atualiza as informações do produto
                 produtoExistente.setNome(produto.getNome());
-                produtoExistente.setValor(produto.getValor());
-//                produtoExistente.setQuantidade(produto.getQuantidade());
-//
+                produtoExistente.setQuantidade(produto.getQuantidade());
+                produtoExistente.setQuantidadeMínima(produto.getQuantidadeMínima());
                 // Salva o produto atualizado
                 produtoRepository.save(produtoExistente);
                 return true;
