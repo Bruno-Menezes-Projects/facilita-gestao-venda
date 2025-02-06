@@ -20,7 +20,7 @@ public class Produto {
     @NotNull
     private int quantidade;
     @NotNull
-    private int quantidadeMínima;
+    private int quantidadeMinima;
 
 
     public Produto (String nome, int quantidade) {
@@ -29,7 +29,7 @@ public class Produto {
     }
 
     public Produto clone(){
-        return new Produto(idProduto, nome, quantidade, quantidadeMínima);
+        return new Produto(idProduto, nome, quantidade, quantidadeMinima);
     }
 
 

@@ -8,10 +8,8 @@ function Header() {
         <>
             <Navbar bg="dark" data-bs-theme="dark">
                 <Container>
-                <Navbar.Brand as={Link} to="/">Mercado Campos</Navbar.Brand>
+                <Navbar.Brand as={Link} to="/">Facilita Gestão</Navbar.Brand>
                 <Nav className="me-auto">
-                    <Nav.Link as={Link} to="/pet/list">Pet</Nav.Link>
-                    <Nav.Link as={Link} to="/servico/list">Servico</Nav.Link>
                     <Nav.Link as={Link} to="/produto/list">Produto</Nav.Link>
                 </Nav>
                 </Container>

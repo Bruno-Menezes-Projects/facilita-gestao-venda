@@ -1,21 +1,49 @@
-import {Col, Row, Form, Button, Stack} from "react-bootstrap";
+import {Col, Row, Form, Button, Stack, Modal} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Link, useNavigate} from "react-router-dom";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import ProdutoApi from "../../api/ProdutoApi";
 
 function ProdutoForm({id}){
 
+    const [show, setShow] = useState(false);
+
     const[nome, setNome] = useState("");
-    const [valor, setValor] = useState("");
     const [quantidade, setQuantidade] = useState("");
+    const [quantidadeMinima, setQuantidadeMinima] = useState("");
+
+    const[nomeAnt, setNomeAnt] = useState("");
+    const [quantidadeAnt, setQuantidadeAnt] = useState("");
+    const [quantidadeMinimaAnt, setQuantidadeMinimaAnt] = useState("");
 
     const navigate = useNavigate();
 
+    function handleShow(e) {
+        e.preventDefault()
+        if (id){
+            setShow(true);
+        }else{
+            cadastrarProduto();
+        }
+    }
+
+    function handleClose() {
+        setShow(false);
+    }
+
+    function handleAlterar() {
+        setShow(false);
+        cadastrarProduto()
+    }
+
     function setProduto(produto){
         setNome(produto.nome)
-        setValor(produto.valor);
         setQuantidade(produto.quantidade)
+        setQuantidadeMinima(produto.quantidadeMinima)
+
+        setNomeAnt(produto.nome)
+        setQuantidadeAnt(produto.quantidade)
+        setQuantidadeMinimaAnt(produto.quantidadeMinima)
     }
 
     useEffect(() => {
@@ -26,9 +54,8 @@ function ProdutoForm({id}){
         }
     }, [id]);
 
-    function cadastrarProduto(e) {
-        e.preventDefault();
-        var produto = {idProduto: id, nome: nome, valor: valor, quantidade: quantidade};
+    function cadastrarProduto() {
+        var produto = {idProduto: id, nome: nome, quantidade: quantidade, quantidadeMinima: quantidadeMinima};
         console.log(JSON.stringify(produto));
         console.log("cadastrarProduto exec.....");
 
@@ -44,17 +71,20 @@ function ProdutoForm({id}){
 
     return(
         <Container>
-            <Form onSubmit={cadastrarProduto}>
+            <Form onSubmit={handleShow}>
                 <Row>
                     <Col sm="6">
                         {id && (
                             <Form.Group as={Row} className="mb-3" controlId="id">
-                                <Form.Label column sm="2">
-                                    Id.
-                                </Form.Label>
-                                <Col sm="10">
-                                    <Form.Control plaintext readOnly defaultValue={id} />
-                                </Col>
+                                <Row className="justify-content-md-center">
+                                    <Col xl={12}>
+                                        <Stack direction="horizontal" gap={3}>
+                                            <h3>
+                                                Id do Produto em alteração: &nbsp;&nbsp;&nbsp; <strong>{id}</strong>
+                                            </h3>
+                                        </Stack>
+                                    </Col>
+                                </Row>
                             </Form.Group>
                         )}
 
@@ -67,21 +97,21 @@ function ProdutoForm({id}){
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3" controlId="valor">
-                            <Form.Label column sm="10">
-                                Valor do produto:
-                            </Form.Label>
-                            <Col sm="8">
-                                <Form.Control type="text" placeholder="Valor do produto" defaultValue={valor} onChange={(e) => setValor(e.target.value)}/>
-                            </Col>
-                        </Form.Group>
-
                         <Form.Group as={Row} className="mb-3" controlId="quantidade">
                             <Form.Label column sm="10">
                                 Quantidade de estoque:
                             </Form.Label>
                             <Col sm="8">
                                 <Form.Control type="text" placeholder="Quantidade de estoque" defaultValue={quantidade} onChange={(e) => setQuantidade(e.target.value)}/>
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} className="mb-3" controlId="quantidadeMinima">
+                            <Form.Label column sm="10">
+                                Quantidade Mínima (para alerta):
+                            </Form.Label>
+                            <Col sm="8">
+                                <Form.Control type="text" placeholder="Quantidade de alerta" defaultValue={quantidadeMinima} onChange={(e) => setQuantidadeMinima(e.target.value)}/>
                             </Col>
                         </Form.Group>
 
@@ -112,8 +142,69 @@ function ProdutoForm({id}){
 
             {id} :
             {nome} :
-            {valor}:
-            {quantidade}
+            {quantidade}:
+            {quantidadeMinima}
+
+            <Modal show={show} onHide={handleClose}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                    </Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
+                    <h3>Anterior:</h3>
+                    <h4>Nome do produto:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {nomeAnt}
+                        </strong>
+                        <br/>
+
+                        Quantidade de estoque:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {quantidadeAnt}
+                        </strong>
+                        <br/>
+
+                        Quantidade mínima:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {quantidadeMinimaAnt}
+                        </strong>
+                    </h4>
+                    <br/>
+
+                    <h3>Alteração:</h3>
+                    <h4>Nome do produto:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {nome}
+                        </strong>
+                        <br/>
+
+                        Quantidade de estoque:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {quantidade}
+                        </strong>
+                        <br/>
+
+                        Quantidade mínima:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {quantidadeMinima}
+                        </strong>
+                    </h4>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="primary" onClick={handleClose}>
+                        Fechar
+                    </Button>
+                    <Button variant="success" onClick={handleAlterar}>
+                        Alterar
+                    </Button>
+                </Modal.Footer>
+            </Modal>
         </Container>
     );
 }
