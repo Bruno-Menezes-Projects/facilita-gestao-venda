@@ -48,6 +48,20 @@ public class ContaController {
         return contaService.deleteConta(id);
     }
 
+    @Operation(summary = "findByTextTitular", description = "Retorna as contas com base na pesquisa de texto em titular.")
+    @DeleteMapping("/searchTitular/{text}")
+    public ResponseEntity<Conta> findByTextTitular(@PathVariable String text){
+        return contaService.findByTextTitular(text);
+    }
+
+    @Operation(summary = "findByTextDescricao", description = "Retorna as contas com base na pesquisa de texto em descricao.")
+    @DeleteMapping("/searchDescricao/{text}")
+    public ResponseEntity<Conta> findByTextDescricao(@PathVariable String text){
+        return contaService.findByTextDescricao(text);
+    }
+
+
+
 
 
 }

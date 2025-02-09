@@ -68,11 +68,20 @@ function ContaList(){
             <Container>
                 <br/>
                 <Row>
+                    <h5 className="tituloPesquisa">Pesquisar Conta</h5>
+                    <Col xl={9}>
+                        <Form onChange={submitSearchProduto}>
+                            <Form.Group className="mb-3" controlId="searchText">
+                                <Form.Control type="text" placeholder="Nome do produto"
+                                              onChange={(e) => setSearchText(e.target.value)}/>
+                            </Form.Group>
+                        </Form>
+                    </Col>
                     <Col xl={3}>
                         <Link to="/conta/incluir">
                             <Button>
                                 Adicionar Conta
-                                 &nbsp;
+                                &nbsp;
                                 <BsFillPlusCircleFill/>
                             </Button>
                         </Link>

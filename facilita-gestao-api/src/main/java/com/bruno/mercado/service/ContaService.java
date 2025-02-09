@@ -75,5 +75,21 @@ public class ContaService {
         return notFoundReturn();
     }
 
+    public ResponseEntity<Conta> findByTextTitular(String text){
+        List<Conta> contaOp = contaRepository.findByTitularContainingIgnoreCase(text);
+        if(contaOp.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(contaOp.get(0));
+    }
+
+    public ResponseEntity<Conta> findByTextDescricao(String text){
+        List<Conta> coontaOp = contaRepository.findByDescricaoContainingIgnoreCase(text);
+        if(coontaOp.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(coontaOp.get(0));
+    }
+
 
 }
