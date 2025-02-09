@@ -74,7 +74,7 @@ function ContaForm({id}){
 
     return(
         <Container>
-            <Form onSubmit={handleShow}>
+            <Form  onSubmit={handleShow}>
                 <Row>
                     <Col sm="6">
                         {id && (
@@ -139,11 +139,11 @@ function ContaForm({id}){
                         <br/>
 
 
-                        <Row className="justify-content-md-center">
-                            <Col xl={12}>
+                        <Row className="justify-content-start">
+                            <Col className="text-start"  xl={8}>
                                 <Stack direction="horizontal" gap={3}>
                                     <div className="p-2">
-                                        <Link to="/produto/list">
+                                        <Link to="/conta/list">
                                             <Button variant="primary">
                                                 Cancelar
                                             </Button>

@@ -97,7 +97,9 @@ function ContaList(){
                                 <td className="text-start">{conta.id}</td>
                                 <td className="text-start">{conta.titular}</td>
                                 <td className="text-end">{conta.descricao}</td>
-                                <td className="text-end">{conta.dtVencimento}</td>
+                                <td className="text-end">
+                                    {new Date(conta.dtVencimento).toLocaleDateString('pt-BR').slice(0, 10)}
+                                </td>
                                 <td className="text-end">{conta.situacao}</td>
                                 <td>
                                     <Stack direction="horizontal" gap={1}>
