@@ -49,14 +49,14 @@ public class ContaController {
     }
 
     @Operation(summary = "findByTextTitular", description = "Retorna as contas com base na pesquisa de texto em titular.")
-    @DeleteMapping("/searchTitular/{text}")
-    public ResponseEntity<Conta> findByTextTitular(@PathVariable String text){
+    @GetMapping("/searchTitular/{text}")
+    public ResponseEntity<List<Conta>> findByTextTitular(@PathVariable String text){
         return contaService.findByTextTitular(text);
     }
 
     @Operation(summary = "findByTextDescricao", description = "Retorna as contas com base na pesquisa de texto em descricao.")
-    @DeleteMapping("/searchDescricao/{text}")
-    public ResponseEntity<Conta> findByTextDescricao(@PathVariable String text){
+    @GetMapping("/searchDescricao/{text}")
+    public ResponseEntity<List<Conta>> findByTextDescricao(@PathVariable String text){
         return contaService.findByTextDescricao(text);
     }
 

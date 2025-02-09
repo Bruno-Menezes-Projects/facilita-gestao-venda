@@ -12,7 +12,12 @@ import { CiCirclePlus } from "react-icons/ci";
 
 function ContaList(){
 
-    const margem = 5;
+    const [tipoPesquisa, setTipoPesquisa] = useState('titular');  // Inicializa com 'titular' como valor padrão
+
+    // Função para alterar o tipo de pesquisa com base na seleção
+    const handleTipoPesquisaChange = (e) => {
+        setTipoPesquisa(e.target.value);
+    };
 
     const [show, setShow] = useState(false);
     const [idDelete, setIdDelete] = useState(false);
@@ -52,7 +57,11 @@ function ContaList(){
 
     function consultarEPrecherTable(){
         if (searchText.trim().length > 0){
-            contaApi.getContaByText(setContaList, searchText);
+            if (tipoPesquisa === "t"){
+                contaApi.getContaByTextTitular(setContaList, searchText);
+            }else{
+                contaApi.getContaByTextDescricao(setContaList, searchText);
+            }
         }else{
             contaApi.getContas(setContaList);
         }
@@ -67,26 +76,56 @@ function ContaList(){
         <>
             <Container>
                 <br/>
-                <Row>
-                    <h5 className="tituloPesquisa">Pesquisar Conta</h5>
-                    <Col xl={9}>
-                        <Form onChange={submitSearchProduto}>
+                <Row className="mb-3">
+                    <Col xl={6}>
+                        <h5 className="text-white">
+                            Pesquisar Conta
+                        </h5>
+                    </Col>
+                    <Col xl={3}>
+                        <h5 className="text-white">
+                            Pesquisar Por
+                        </h5>
+                    </Col>
+                    <Col xl={3}>
+                    </Col>
+                </Row>
+                <Row className="mb-3">
+                    <Col xl={6}>
+                        <Form onChange={submitSearchConta}>
                             <Form.Group className="mb-3" controlId="searchText">
-                                <Form.Control type="text" placeholder="Nome do produto"
-                                              onChange={(e) => setSearchText(e.target.value)}/>
+                                <Form.Control
+                                    type="text"
+                                    placeholder= { tipoPesquisa === "t" ? "Nome do Titular" : "Descrição da conta"}
+                                    onChange={(e) => setSearchText(e.target.value)}
+                                />
                             </Form.Group>
                         </Form>
                     </Col>
                     <Col xl={3}>
+                        {/* Seletor para tipo de pesquisa */}
+                        <Form.Group controlId="tipoPesquisa" className="mb-3">
+                            <Form.Select
+                                value={tipoPesquisa}
+                                onChange={handleTipoPesquisaChange}
+                            >
+                                <option value="t">Titular</option>
+                                <option value="d">Descrição</option>
+                            </Form.Select>
+                        </Form.Group>
+                    </Col>
+                    <Col xl={3}>
+                        {/* Link para adicionar conta */}
                         <Link to="/conta/incluir">
                             <Button>
                                 Adicionar Conta
                                 &nbsp;
-                                <BsFillPlusCircleFill/>
+                                <BsFillPlusCircleFill />
                             </Button>
                         </Link>
                     </Col>
                 </Row>
+
                 <br/>
                 <Table striped bordered hover>
                     <thead>

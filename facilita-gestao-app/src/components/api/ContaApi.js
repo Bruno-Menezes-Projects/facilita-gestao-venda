@@ -11,9 +11,16 @@ class contaApi extends BaseApi{
         super.myFetch(setData, method, url);
     }
 
-    getContaByText(setData, searchText){
+    getContaByTextTitular(setData, searchText){
         const method = "GET";
-        const url = `${this.baseUrl}api/v1/contas/searchtext/${searchText}`;
+        const url = `${this.baseUrl}api/v1/contas/searchTitular/${searchText}`;
+        console.log(url);
+        super.myFetch(setData, method, url);
+    }
+
+    getContaByTextDescricao(setData, searchText){
+        const method = "GET";
+        const url = `${this.baseUrl}api/v1/contas/searchDescricao/${searchText}`;
         console.log(url);
         super.myFetch(setData, method, url);
     }
