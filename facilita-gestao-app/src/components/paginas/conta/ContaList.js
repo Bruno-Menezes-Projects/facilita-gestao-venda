@@ -23,7 +23,7 @@ function ContaList(){
     const contaApi = new ContaApi();
 
     const getConta = (id) => {
-        const conta = contaList.find(conta => conta.idConta === id);
+        const conta = contaList.find(conta => conta.id === id);
         return conta ? conta.descricao : "Conta não encontrada";
     };
 
