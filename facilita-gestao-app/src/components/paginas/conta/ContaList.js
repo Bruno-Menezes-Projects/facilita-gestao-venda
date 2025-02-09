@@ -15,7 +15,7 @@ function ContaList(){
 
     const [contador, setContador] = useState(0);
 
-    const [tipoPesquisa, setTipoPesquisa] = useState('titular');  // Inicializa com 'titular' como valor padrão
+    const [tipoPesquisa, setTipoPesquisa] = useState('t');  // Inicializa com 'titular' como valor padrão
 
     // Função para alterar o tipo de pesquisa com base na seleção
     const handleTipoPesquisaChange = (e) => {
@@ -58,22 +58,20 @@ function ContaList(){
         // Inicia o intervalo para chamar a função a cada 2 segundos
         const intervalId = setInterval(() => {
             setContador((prev) => prev + 1);
-            consultarEPrecherTable();
+            if (searchText.trim().length === 0){
+                consultarEPrecherTable();
+            }
         }, 1000);
 
         // Limpa o intervalo ao desmontar o componente ou quando a dependência muda
         return () => clearInterval(intervalId);
-    }, [location.pathname]); // Atualiza o intervalo se o pathname mudar
-    
+    }, [location.pathname, searchText]); // Atualiza o intervalo se o pathname mudar
+
     function consultarEPrecherTable(){
-        if (searchText.trim().length > 0){
-            if (tipoPesquisa === "t"){
-                contaApi.getContaByTextTitular(setContaList, searchText);
-            }else{
-                contaApi.getContaByTextDescricao(setContaList, searchText);
-            }
+        if (tipoPesquisa === "t"){
+            contaApi.getContaByTextTitular(setContaList, searchText);
         }else{
-            contaApi.getContas(setContaList);
+            contaApi.getContaByTextDescricao(setContaList, searchText);
         }
     }
 
@@ -108,12 +106,17 @@ function ContaList(){
                 </Row>
                 <Row className="mb-3">
                     <Col xl={6}>
-                        <Form onChange={submitSearchConta}>
+                        <Form onDragEnter={submitSearchConta} onChange={submitSearchConta}>
                             <Form.Group className="mb-3" controlId="searchText">
                                 <Form.Control
                                     type="text"
                                     placeholder= { tipoPesquisa === "t" ? "Nome do Titular" : "Descrição da conta"}
                                     onChange={(e) => setSearchText(e.target.value)}
+                                    onKeyDown={(e) => {
+                                        if (e.key === 'Enter') {
+                                            e.preventDefault();  // Impede o envio do formulário ao apertar Enter
+                                        }
+                                    }}
                                 />
                             </Form.Group>
                         </Form>

@@ -60,6 +60,12 @@ public class ContaController {
         return contaService.findByTextDescricao(text);
     }
 
+    @Operation(summary = "findByTextTitular", description = "Retorna as contas com base na pesquisa de texto em titular.")
+    @GetMapping({"/searchTitular/","/searchDescricao/"})
+    public ResponseEntity<List<Conta>> findByTextDescricaoTitularVazio(){
+        return this.getContas();
+    }
+
 
 
 
