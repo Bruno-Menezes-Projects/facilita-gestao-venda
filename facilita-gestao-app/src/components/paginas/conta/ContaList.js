@@ -64,7 +64,7 @@ function ContaList(){
         // Limpa o intervalo ao desmontar o componente ou quando a dependência muda
         return () => clearInterval(intervalId);
     }, [location.pathname]); // Atualiza o intervalo se o pathname mudar
-
+    
     function consultarEPrecherTable(){
         if (searchText.trim().length > 0){
             if (tipoPesquisa === "t"){
@@ -162,11 +162,11 @@ function ContaList(){
                                 <td className="text-start">{conta.titular}</td>
                                 <td className="text-end">{conta.descricao}</td>
                                 <td className="text-end">
-                                    {new Date(conta.dtVencimento).toLocaleDateString('pt-BR').slice(0, 10)}
+                                    {new Date(conta.dtVencimento.replace(/-/g, '/')).toLocaleDateString('pt-BR')}
                                 </td>
                                 {/*Descricao*/}
                                 <td className="text-end">
-                                    <Col sm="8">
+                                <Col sm="8">
                                         <Form.Select
                                             value={conta.situacao}
                                             onChange={(e) => atualizaSituacaoConta(e.target.value, conta)}
