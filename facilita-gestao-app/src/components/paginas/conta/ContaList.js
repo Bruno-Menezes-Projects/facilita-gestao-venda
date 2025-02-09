@@ -8,7 +8,8 @@ import { BsDashCircleFill, BsDashCircle  } from "react-icons/bs";
 import { BsExclamationTriangleFill, BsExclamationCircle, BsExclamationCircleFill, BsGraphDown, BsXCircleFill,
     BsCheckLg, BsSearch, BsXCircle, BsCheckCircle, BsFillPlusCircleFill, BsFillPlusCircle} from "react-icons/bs";
 import { CiCirclePlus } from "react-icons/ci";
-
+import { FaHourglassHalf, FaTimesCircle } from "react-icons/fa";
+import { BsHourglassSplit } from "react-icons/bs";
 
 function ContaList(){
 
@@ -164,17 +165,19 @@ function ContaList(){
                                 <td className="text-end">
                                     {new Date(conta.dtVencimento).toLocaleDateString('pt-BR').slice(0, 10)}
                                 </td>
+                                {/*Descricao*/}
                                 <td className="text-end">
                                     <Col sm="8">
                                         <Form.Select
                                             value={conta.situacao}
                                             onChange={(e) => atualizaSituacaoConta(e.target.value, conta)}
-                                            className={`situacao-${conta.situacao.toLowerCase()}`}  // Aplica a classe conforme o valor
+                                            className={`situacao-${conta.situacao.toLowerCase()}`}  // Aplica classe no SELECT
                                         >
-                                            <option className="pg-red"  value="Pendente">Pendente</option>
-                                            <option className="pg-green" value="Paga">Paga</option>
-                                            <option value="Vencida">Vencida</option>
+                                            <option value="Pendente">Pendente ⏳</option>
+                                            <option value="Paga">Paga ✔️</option>
+                                            <option value="Vencida">Vencida ⚠️</option>
                                         </Form.Select>
+
                                     </Col>
                                 </td>
                                 <td>

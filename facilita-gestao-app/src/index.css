@@ -45,7 +45,7 @@ body {
 }
 
 .situacao-vencida:hover {
-  background-color: gray; /* Variedade no hover */
+  background-color: #7a0000; /* Variedade no hover */
   color: white;
 }
 
