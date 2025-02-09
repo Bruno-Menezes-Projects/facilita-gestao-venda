@@ -54,6 +54,7 @@ public class ContaService {
 
             // Atualiza apenas os dados necessários
             contaExistente.setSituacao(contaAtualizada.getSituacao());
+            contaExistente.setValor(contaAtualizada.getValor());
             contaExistente.setDescricao(contaAtualizada.getDescricao());
             contaExistente.setTitular(contaAtualizada.getTitular());
             contaExistente.setDtVencimento(contaAtualizada.getDtVencimento());

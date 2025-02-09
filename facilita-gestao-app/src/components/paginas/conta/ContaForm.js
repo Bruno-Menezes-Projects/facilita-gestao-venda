@@ -12,11 +12,14 @@ function ContaForm({id}){
     const [descricao, setDescricao] = useState("");
     const [dtVencimento, setDtVencimento] = useState("");
     const[situacao, setSituacao] = useState("Pendente");
+    const[valor, setValor] = useState("");
 
     const[titularAnt, setTitularAnt] = useState("");
     const [descricaoAnt, setDescricaoAnt] = useState("");
     const [dtVencimentoAnt, setDtVencimentoAnt] = useState("");
     const [situacaoAnt, setSituacaoAnt] = useState("");
+    const[valorAnt, setValorAnt] = useState("");
+
     const navigate = useNavigate();
 
     function handleShow(e) {
@@ -42,11 +45,13 @@ function ContaForm({id}){
         setDescricao(conta.descricao)
         setDtVencimento(conta.dtVencimento)
         setSituacao(conta.situacao)
+        setValor(conta.valor)
 
         setTitularAnt(conta.titular);
         setDescricaoAnt(conta.descricao);
         setDtVencimentoAnt(conta.dtVencimento);
         setSituacaoAnt(conta.situacao);
+        setValorAnt(conta.valor)
     }
 
     useEffect(() => {
@@ -58,7 +63,7 @@ function ContaForm({id}){
     }, [id]);
 
     function cadastrarConta() {
-        var conta = {id: id, titular: titular, descricao: descricao, dtVencimento: dtVencimento, situacao: situacao};
+        var conta = {id: id, titular: titular, descricao: descricao, valor: valor, dtVencimento: dtVencimento, situacao: situacao};
         console.log(JSON.stringify(conta));
         console.log("cadastrarConta exec.....");
 
@@ -95,6 +100,21 @@ function ContaForm({id}){
                                 <Form.Control type="text" placeholder="Descricao" defaultValue={descricao} onChange={(e) => setDescricao(e.target.value)}/>
                             </Col>
                         </Form.Group>
+
+                        <Form.Group as={Row} className="mb-3" controlId="quantidade">
+                            <Form.Label className="fs-5" column sm="10">
+                                Valor:
+                            </Form.Label>
+                            <Col sm="8">
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Valor da Conta"
+                                    value={`R$ ${parseFloat(valor).toFixed(2)}`}  // Formata o valor com 2 casas decimais
+                                    onChange={(e) => setValor(e.target.value.replace('R$', '').trim())} // Atualiza o valor removendo o "R$"
+                                />
+                            </Col>
+                        </Form.Group>
+
 
                         <Form.Group as={Row} className="mb-3" controlId="dataVencimento">
                             <Form.Label className="fs-5" column sm="10">
@@ -157,6 +177,7 @@ function ContaForm({id}){
             {id} :
             {titular} :
             {descricao}:
+            {valor}:
             {dtVencimento}:
             {situacao}
 
@@ -179,6 +200,13 @@ function ContaForm({id}){
                         &nbsp;&nbsp;
                         <strong>
                             {descricaoAnt}
+                        </strong>
+                        <br/>
+
+                        Valor:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {valorAnt}
                         </strong>
                         <br/>
 
@@ -209,6 +237,13 @@ function ContaForm({id}){
                         &nbsp;&nbsp;
                         <strong>
                             {descricao}
+                        </strong>
+                        <br/>
+
+                        Valor:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {valor}
                         </strong>
                         <br/>
 

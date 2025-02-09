@@ -152,7 +152,8 @@ function ContaList(){
                         <th>Id</th>
                         <th>Titular</th>
                         <th>Descrição</th>
-                        <th>Data de vencimento</th>
+                        <th>Valor</th>
+                        <th>Vencimento</th>
                         <th>Situação</th>
                         <th>Alterar Conta</th>
                     </tr>
@@ -164,12 +165,18 @@ function ContaList(){
                                 <td className="text-start">{conta.id}</td>
                                 <td className="text-start">{conta.titular}</td>
                                 <td className="text-end">{conta.descricao}</td>
+                                <td className="text-start">
+                                    <div style={{display: 'flex', justifyContent: 'space-between'}}>
+                                        <span>R$</span>
+                                        <span>{conta.valor.toFixed(2)}</span>
+                                    </div>
+                                </td>
                                 <td className="text-end">
                                     {new Date(conta.dtVencimento.replace(/-/g, '/')).toLocaleDateString('pt-BR')}
                                 </td>
                                 {/*Descricao*/}
-                                <td className="text-end">
-                                <Col sm="8">
+                                <td className="align-items-end">
+                                    <Col sm="10" className="justify-content-end">
                                         <Form.Select
                                             value={conta.situacao}
                                             onChange={(e) => atualizaSituacaoConta(e.target.value, conta)}
@@ -179,7 +186,6 @@ function ContaList(){
                                             <option value="Paga">Paga ✔️</option>
                                             <option value="Vencida">Vencida ⚠️</option>
                                         </Form.Select>
-
                                     </Col>
                                 </td>
                                 <td>
