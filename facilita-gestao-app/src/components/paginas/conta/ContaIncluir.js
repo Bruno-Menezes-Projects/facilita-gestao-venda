@@ -4,9 +4,9 @@ import ContaForm from "./ContaForm";
 function ContaIncluir(){
     return(
         <div className={"colorWhite"}>
-            <Link to={"/"}>Home</Link> / <Link to={"/produto/list"}>Lista Produto</Link> / Incluir Produto
+            <Link to={"/"}>Home</Link> / <Link to={"/conta/list"}>Lista Conta</Link> / Incluir Conta
 
-            <h1>Incluir Produto:</h1>
+            <h1>Incluir Conta:</h1>
             <br/>
             <ContaForm />
         </div>

@@ -2,20 +2,21 @@ import {Col, Row, Form, Button, Stack, Modal} from "react-bootstrap";
 import Container from "react-bootstrap/Container";
 import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useState} from "react";
-import ProdutoApi from "../../api/ProdutoApi";
+import ContaApi from "../../api/ContaApi";
 
 function ContaForm({id}){
 
     const [show, setShow] = useState(false);
 
-    const[nome, setNome] = useState("");
-    const [quantidade, setQuantidade] = useState("");
-    const [quantidadeMinima, setQuantidadeMinima] = useState("");
+    const[titular, setTitular] = useState("");
+    const [descricao, setDescricao] = useState("");
+    const [dtVencimento, setDtVencimento] = useState("");
+    const[situacao, setSituacao] = useState("");
 
-    const[nomeAnt, setNomeAnt] = useState("");
-    const [quantidadeAnt, setQuantidadeAnt] = useState("");
-    const [quantidadeMinimaAnt, setQuantidadeMinimaAnt] = useState("");
-
+    const[titularAnt, setTitularAnt] = useState("");
+    const [descricaoAnt, setDescricaoAnt] = useState("");
+    const [dtVencimentoAnt, setDtVencimentoAnt] = useState("");
+    const [situacaoAnt, setSituacaoAnt] = useState("");
     const navigate = useNavigate();
 
     function handleShow(e) {
@@ -23,7 +24,7 @@ function ContaForm({id}){
         if (id){
             setShow(true);
         }else{
-            cadastrarProduto();
+            cadastrarConta();
         }
     }
 
@@ -33,40 +34,37 @@ function ContaForm({id}){
 
     function handleAlterar() {
         setShow(false);
-        cadastrarProduto()
+        cadastrarConta()
     }
 
-    function setProduto(produto){
-        setNome(produto.nome)
-        setQuantidade(produto.quantidade)
-        setQuantidadeMinima(produto.quantidadeMinima)
-
-        setNomeAnt(produto.nome)
-        setQuantidadeAnt(produto.quantidade)
-        setQuantidadeMinimaAnt(produto.quantidadeMinima)
+    function setConta(conta){
+        setTitular(conta.titular)
+        setDescricao(conta.descricao)
+        setDtVencimento(conta.dtVencimento)
+        setSituacao(conta.situacao)
     }
 
     useEffect(() => {
         if(id){
-            console.log("Consultar o produto pelo id: " + id);
-            const produtoApi = new ProdutoApi();
-            produtoApi.getProduto(setProduto, id);
+            console.log("Consultar o conta pelo id: " + id);
+            const contaApi = new ContaApi();
+            contaApi.getConta(setConta, id);
         }
     }, [id]);
 
-    function cadastrarProduto() {
-        var produto = {idProduto: id, nome: nome, quantidade: quantidade, quantidadeMinima: quantidadeMinima};
-        console.log(JSON.stringify(produto));
-        console.log("cadastrarProduto exec.....");
+    function cadastrarConta() {
+        var conta = {idConta: id, titular: titular, descricao: descricao, dtVencimento: dtVencimento, situacao: situacao};
+        console.log(JSON.stringify(conta));
+        console.log("cadastrarConta exec.....");
 
-        const produtoApi = new ProdutoApi();
+        const contaApi = new ContaApi();
         if (id){
-            produtoApi.alterarProduto(produto);
+            contaApi.alterarConta(conta);
         }else{
-            produtoApi.incluirProduto(produto);
+            contaApi.incluirConta(conta);
         }
 
-        navigate(`/produto/list`);
+        navigate(`/conta/list`);
     }
 
     return(
@@ -80,7 +78,7 @@ function ContaForm({id}){
                                     <Col xl={12}>
                                         <Stack direction="horizontal" gap={3}>
                                             <h3>
-                                                Id do Produto em alteração: &nbsp;&nbsp;&nbsp; <strong>{id}</strong>
+                                                Id da conta em alteração: &nbsp;&nbsp;&nbsp; <strong>{id}</strong>
                                             </h3>
                                         </Stack>
                                     </Col>
@@ -90,28 +88,37 @@ function ContaForm({id}){
 
                         <Form.Group as={Row} className="mb-3" controlId="nome">
                             <Form.Label column sm="10">
-                                Nome do produto:
+                                Titular:
                             </Form.Label>
                             <Col sm="8">
-                                <Form.Control type="text" placeholder="Nome do produto" defaultValue={nome} onChange={(e) => setNome(e.target.value)} />
+                                <Form.Control type="text" placeholder="Titular" defaultValue={titular} onChange={(e) => setTitular(e.target.value)} />
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="quantidade">
                             <Form.Label column sm="10">
-                                Quantidade de estoque:
+                                Descricao:
                             </Form.Label>
                             <Col sm="8">
-                                <Form.Control type="text" placeholder="Quantidade de estoque" defaultValue={quantidade} onChange={(e) => setQuantidade(e.target.value)}/>
+                                <Form.Control type="text" placeholder="Descricao" defaultValue={descricao} onChange={(e) => setDescricao(e.target.value)}/>
                             </Col>
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="quantidadeMinima">
                             <Form.Label column sm="10">
-                                Quantidade Mínima (para alerta):
+                                Data de vencimento:
                             </Form.Label>
                             <Col sm="8">
-                                <Form.Control type="text" placeholder="Quantidade de alerta" defaultValue={quantidadeMinima} onChange={(e) => setQuantidadeMinima(e.target.value)}/>
+                                <Form.Control type="text" placeholder="Data de vencimento" defaultValue={dtVencimento} onChange={(e) => setDtVencimento(e.target.value)}/>
+                            </Col>
+                        </Form.Group>
+
+                        <Form.Group as={Row} className="mb-3" controlId="quantidadeMinima">
+                            <Form.Label column sm="10">
+                                Situação:
+                            </Form.Label>
+                            <Col sm="8">
+                                <Form.Control type="text" placeholder="situação" defaultValue={situacao} onChange={(e) => setSituacao(e.target.value)}/>
                             </Col>
                         </Form.Group>
 
@@ -141,9 +148,10 @@ function ContaForm({id}){
             </Form>
 
             {id} :
-            {nome} :
-            {quantidade}:
-            {quantidadeMinima}
+            {titular} :
+            {descricao}:
+            {dtVencimento}:
+            {situacao}
 
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
@@ -152,47 +160,59 @@ function ContaForm({id}){
                 </Modal.Header>
                 <Modal.Body>
                     <h3>Anterior:</h3>
-                    <h4>Nome do produto:
+                    <h4>Titular:
                         &nbsp;&nbsp;
                         <strong>
-                            {nomeAnt}
+                            {titularAnt}
                         </strong>
                         <br/>
 
-                        Quantidade de estoque:
+                        Descrição:
                         &nbsp;&nbsp;
                         <strong>
-                            {quantidadeAnt}
+                            {descricaoAnt}
                         </strong>
                         <br/>
 
-                        Quantidade mínima:
+                        Data de vencimento:
                         &nbsp;&nbsp;
                         <strong>
-                            {quantidadeMinimaAnt}
+                            {dtVencimentoAnt}
+                        </strong>
+
+                        Situação:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {situacaoAnt}
                         </strong>
                     </h4>
                     <br/>
 
                     <h3>Alteração:</h3>
-                    <h4>Nome do produto:
+                    <h4>Titular:
                         &nbsp;&nbsp;
                         <strong>
-                            {nome}
+                            {titular}
                         </strong>
                         <br/>
 
-                        Quantidade de estoque:
+                        Descrição:
                         &nbsp;&nbsp;
                         <strong>
-                            {quantidade}
+                            {descricao}
                         </strong>
                         <br/>
 
-                        Quantidade mínima:
+                        Data de vencimento:
                         &nbsp;&nbsp;
                         <strong>
-                            {quantidadeMinima}
+                            {dtVencimento}
+                        </strong>
+
+                        Situação:
+                        &nbsp;&nbsp;
+                        <strong>
+                            {situacao}
                         </strong>
                     </h4>
                 </Modal.Body>
