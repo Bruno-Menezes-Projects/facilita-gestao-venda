@@ -2,6 +2,7 @@ package com.bruno.mercado.controller;
 
 
 import com.bruno.mercado.model.Conta;
+import com.bruno.mercado.model.Produto;
 import com.bruno.mercado.service.ContaService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,19 +32,19 @@ public class ContaController {
 
     @Operation(summary = "createConta", description = "Cria a conta com base nos dados.")
     @PostMapping({"","/"})
-    public ResponseEntity<Conta> createConta(Conta conta){
+    public ResponseEntity<Conta> createConta(@RequestBody Conta conta){
         return contaService.createConta(conta);
     }
 
     @Operation(summary = "updateConta", description = "Atualiza a conta com base nos dados.")
     @PutMapping({"","/"})
-    public ResponseEntity<Conta> updateConta(Conta conta){
+    public ResponseEntity<Conta> updateConta(@RequestBody Conta conta){
         return contaService.updateConta(conta);
     }
 
     @Operation(summary = "deleteContaById", description = "Deleta a conta pelo Id.")
-    @DeleteMapping({"","/"})
-    public ResponseEntity<Conta> deleteConta(Long id){
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Conta> deleteConta(@PathVariable Long id){
         return contaService.deleteConta(id);
     }
 

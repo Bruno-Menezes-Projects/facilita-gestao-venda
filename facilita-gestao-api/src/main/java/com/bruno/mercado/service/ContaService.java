@@ -1,7 +1,9 @@
 package com.bruno.mercado.service;
 
 import com.bruno.mercado.model.Conta;
+import com.bruno.mercado.model.Produto;
 import com.bruno.mercado.repository.ContaRepository;
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
@@ -44,13 +46,23 @@ public class ContaService {
                 .header("Erro","O Id não deve ser informado.").build();
     }
 
-    public ResponseEntity<Conta> updateConta(Conta conta) {
-        Optional<Conta> contaOp = contaRepository.findById(conta.getId());
+    public ResponseEntity<Conta> updateConta(Conta contaAtualizada) {
+        System.out.println("ALTERACAO Id: "+contaAtualizada.getId());
+        Optional<Conta> contaOp = contaRepository.findById(contaAtualizada.getId());
         if (contaOp.isPresent()) {
-            Conta contaSalva = contaRepository.save(conta);
+            Conta contaExistente = contaOp.get();
+
+            // Atualiza apenas os dados necessários
+            contaExistente.setSituacao(contaAtualizada.getSituacao());
+            contaExistente.setDescricao(contaAtualizada.getDescricao());
+            contaExistente.setTitular(contaAtualizada.getTitular());
+            contaExistente.setDtVencimento(contaAtualizada.getDtVencimento());
+
+            // Salva no banco
+            Conta contaSalva = contaRepository.save(contaExistente);
             return ResponseEntity.ok(contaSalva);
         }
-        return notFoundReturn();
+        return ResponseEntity.notFound().build();
     }
 
     public ResponseEntity<Conta> deleteConta(Long id) {

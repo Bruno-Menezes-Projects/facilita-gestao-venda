@@ -4,7 +4,7 @@ class contaApi extends BaseApi{
 
     baseUrl = "http://localhost:8080/";
 
-    getConta(setData){
+    getContas(setData){
         const method = "GET";
         const url = `${this.baseUrl}api/v1/contas`;
         console.log(url);
@@ -34,7 +34,8 @@ class contaApi extends BaseApi{
 
     alterarConta(conta){
         const method = "PUT";
-        const url = `${this.baseUrl}api/v1/contas`;
+        var idDesejado = conta.id;
+        const url = `${this.baseUrl}api/v1/contas/`; // Passando o id na URL
         console.log(url);
         super.myFetch({}, method, url, conta);
     }

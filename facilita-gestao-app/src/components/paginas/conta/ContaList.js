@@ -23,8 +23,11 @@ function ContaList(){
     const contaApi = new ContaApi();
 
     const getConta = (id) => {
-        const conta = contaList.find(conta => conta.id === id);
-        return conta ? conta.descricao : "Conta não encontrada";
+        if (id){
+            const conta = contaList.find(conta => conta.id === id);
+            return conta ? conta.descricao : "Conta não encontrada";
+        }
+        return null;
     };
 
     function handleShow(id) {
@@ -51,7 +54,7 @@ function ContaList(){
         if (searchText.trim().length > 0){
             contaApi.getContaByText(setContaList, searchText);
         }else{
-            contaApi.getConta(setContaList);
+            contaApi.getContas(setContaList);
         }
     }
 
@@ -84,6 +87,7 @@ function ContaList(){
                         <th>Descrição</th>
                         <th>Data de vencimento</th>
                         <th>Situação</th>
+                        <th>Alterar Conta</th>
                     </tr>
                     </thead>
                     <tbody>

@@ -11,7 +11,7 @@ function ContaForm({id}){
     const[titular, setTitular] = useState("");
     const [descricao, setDescricao] = useState("");
     const [dtVencimento, setDtVencimento] = useState("");
-    const[situacao, setSituacao] = useState("");
+    const[situacao, setSituacao] = useState("Pendente");
 
     const[titularAnt, setTitularAnt] = useState("");
     const [descricaoAnt, setDescricaoAnt] = useState("");
@@ -42,6 +42,11 @@ function ContaForm({id}){
         setDescricao(conta.descricao)
         setDtVencimento(conta.dtVencimento)
         setSituacao(conta.situacao)
+
+        setTitularAnt(conta.titular);
+        setDescricaoAnt(conta.descricao);
+        setDtVencimentoAnt(conta.dtVencimento);
+        setSituacaoAnt(conta.situacao);
     }
 
     useEffect(() => {
@@ -53,7 +58,7 @@ function ContaForm({id}){
     }, [id]);
 
     function cadastrarConta() {
-        var conta = {idConta: id, titular: titular, descricao: descricao, dtVencimento: dtVencimento, situacao: situacao};
+        var conta = {id: id, titular: titular, descricao: descricao, dtVencimento: dtVencimento, situacao: situacao};
         console.log(JSON.stringify(conta));
         console.log("cadastrarConta exec.....");
 
@@ -104,23 +109,32 @@ function ContaForm({id}){
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3" controlId="quantidadeMinima">
+                        <Form.Group as={Row} className="mb-3" controlId="dataVencimento">
                             <Form.Label column sm="10">
-                                Data de vencimento:
+                                Data de Vencimento:
                             </Form.Label>
                             <Col sm="8">
-                                <Form.Control type="text" placeholder="Data de vencimento" defaultValue={dtVencimento} onChange={(e) => setDtVencimento(e.target.value)}/>
+                                <Form.Control
+                                    type="date"
+                                    value={dtVencimento}
+                                    onChange={(e) => setDtVencimento(e.target.value)}
+                                />
                             </Col>
                         </Form.Group>
 
-                        <Form.Group as={Row} className="mb-3" controlId="quantidadeMinima">
+                        <Form.Group as={Row} className="mb-3" controlId="situacao">
                             <Form.Label column sm="10">
                                 Situação:
                             </Form.Label>
                             <Col sm="8">
-                                <Form.Control type="text" placeholder="situação" defaultValue={situacao} onChange={(e) => setSituacao(e.target.value)}/>
+                                <Form.Select value={situacao} onChange={(e) => setSituacao(e.target.value)}>
+                                    <option value="Pendente">Pendente</option>
+                                    <option value="Paga">Paga</option>
+                                    <option value="Vencida">Vencida</option>
+                                </Form.Select>
                             </Col>
                         </Form.Group>
+
 
                         <br/>
 
@@ -156,6 +170,7 @@ function ContaForm({id}){
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>
+
                     </Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
@@ -179,6 +194,7 @@ function ContaForm({id}){
                         <strong>
                             {dtVencimentoAnt}
                         </strong>
+                        <br/>
 
                         Situação:
                         &nbsp;&nbsp;
@@ -208,6 +224,7 @@ function ContaForm({id}){
                         <strong>
                             {dtVencimento}
                         </strong>
+                        <br/>
 
                         Situação:
                         &nbsp;&nbsp;
