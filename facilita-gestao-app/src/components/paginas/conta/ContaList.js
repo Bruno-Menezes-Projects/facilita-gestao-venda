@@ -59,12 +59,11 @@ function ContaList(){
         const intervalId = setInterval(() => {
             setContador((prev) => prev + 1);
             consultarEPrecherTable();
-        }, 2000);
+        }, 1000);
 
         // Limpa o intervalo ao desmontar o componente ou quando a dependência muda
         return () => clearInterval(intervalId);
     }, [location.pathname]); // Atualiza o intervalo se o pathname mudar
-
 
     function consultarEPrecherTable(){
         if (searchText.trim().length > 0){
