@@ -168,7 +168,7 @@ function ContaList(){
                                 <td className="text-start">
                                     <div style={{display: 'flex', justifyContent: 'space-between'}}>
                                         <span>R$</span>
-                                        <span>{conta.valor.toFixed(2)}</span>
+                                        <span>{conta.valor.toFixed(2).replace(".",",")}</span>
                                     </div>
                                 </td>
                                 <td className="text-end">

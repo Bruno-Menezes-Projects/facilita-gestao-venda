@@ -108,9 +108,9 @@ function ContaForm({id}){
                             <Col sm="8">
                                 <Form.Control
                                     type="text"
-                                    placeholder="Valor da Conta"
-                                    value={`R$ ${parseFloat(valor).toFixed(2)}`}  // Formata o valor com 2 casas decimais
-                                    onChange={(e) => setValor(e.target.value.replace('R$', '').trim())} // Atualiza o valor removendo o "R$"
+                                    placeholder="Ex: 999,9"
+                                    defaultValue={valor}
+                                    onChange={(e) => setValor(e.target.value.replace('R$', '').replace(',', '.').trim())} // Atualiza o valor removendo o "R$"
                                 />
                             </Col>
                         </Form.Group>
@@ -145,12 +145,7 @@ function ContaForm({id}){
                                 </Form.Select>
                             </Col>
                         </Form.Group>
-
-
-
-
                         <br/>
-
 
                         <Row className="justify-content-start">
                             <Col className="text-start"  xl={8}>
