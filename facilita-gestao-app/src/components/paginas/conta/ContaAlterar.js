@@ -9,10 +9,8 @@ function ContaAlterar(){
             <br/>
             <Link to={"/"}>Home</Link> / <Link to={"/conta/list"}>Lista Conta</Link> / Alterar Conta
             <br/>
-            <br/>
 
-            <h1>Alterar Conta:</h1>
-            <br/>
+            <h1>Alterar Conta de Id {id}:</h1>
             <ContaForm id={id}/>
         </div>
 

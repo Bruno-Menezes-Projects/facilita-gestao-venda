@@ -77,22 +77,9 @@ function ContaForm({id}){
             <Form  onSubmit={handleShow}>
                 <Row>
                     <Col sm="6">
-                        {id && (
-                            <Form.Group as={Row} className="mb-3" controlId="id">
-                                <Row className="justify-content-md-center">
-                                    <Col xl={12}>
-                                        <Stack direction="horizontal" gap={3}>
-                                            <h3>
-                                                Id da conta em alteração: &nbsp;&nbsp;&nbsp; <strong>{id}</strong>
-                                            </h3>
-                                        </Stack>
-                                    </Col>
-                                </Row>
-                            </Form.Group>
-                        )}
 
                         <Form.Group as={Row} className="mb-3" controlId="nome">
-                            <Form.Label column sm="10">
+                            <Form.Label className="fs-5" column sm="10">
                                 Titular:
                             </Form.Label>
                             <Col sm="8">
@@ -101,7 +88,7 @@ function ContaForm({id}){
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="quantidade">
-                            <Form.Label column sm="10">
+                            <Form.Label className="fs-5" column sm="10">
                                 Descricao:
                             </Form.Label>
                             <Col sm="8">
@@ -110,7 +97,7 @@ function ContaForm({id}){
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="dataVencimento">
-                            <Form.Label column sm="10">
+                            <Form.Label className="fs-5" column sm="10">
                                 Data de Vencimento:
                             </Form.Label>
                             <Col sm="8">
@@ -123,17 +110,23 @@ function ContaForm({id}){
                         </Form.Group>
 
                         <Form.Group as={Row} className="mb-3" controlId="situacao">
-                            <Form.Label column sm="10">
+                            <Form.Label className="fs-5" column sm="10">
                                 Situação:
                             </Form.Label>
                             <Col sm="8">
-                                <Form.Select value={situacao} onChange={(e) => setSituacao(e.target.value)}>
-                                    <option value="Pendente">Pendente</option>
-                                    <option value="Paga">Paga</option>
+                                <Form.Select
+                                    value={situacao}
+                                    onChange={(e) => setSituacao(e.target.value)}
+                                    className={`situacao-${situacao.toLowerCase()}`}  // Aplica a classe conforme o valor
+                                >
+                                    <option className="pg-red"  value="Pendente">Pendente</option>
+                                    <option className="pg-green" value="Paga">Paga</option>
                                     <option value="Vencida">Vencida</option>
                                 </Form.Select>
                             </Col>
                         </Form.Group>
+
+
 
 
                         <br/>

@@ -12,6 +12,8 @@ import { CiCirclePlus } from "react-icons/ci";
 
 function ContaList(){
 
+    const [contador, setContador] = useState(0);
+
     const [tipoPesquisa, setTipoPesquisa] = useState('titular');  // Inicializa com 'titular' como valor padrão
 
     // Função para alterar o tipo de pesquisa com base na seleção
@@ -52,8 +54,16 @@ function ContaList(){
     }
 
     useEffect(() => {
-        consultarEPrecherTable();
-    }, [location.pathname]);
+        // Inicia o intervalo para chamar a função a cada 2 segundos
+        const intervalId = setInterval(() => {
+            setContador((prev) => prev + 1);
+            consultarEPrecherTable();
+        }, 2000);
+
+        // Limpa o intervalo ao desmontar o componente ou quando a dependência muda
+        return () => clearInterval(intervalId);
+    }, [location.pathname]); // Atualiza o intervalo se o pathname mudar
+
 
     function consultarEPrecherTable(){
         if (searchText.trim().length > 0){
@@ -69,6 +79,12 @@ function ContaList(){
 
     function submitSearchConta(e) {
         e.preventDefault();
+        consultarEPrecherTable();
+    }
+
+    function atualizaSituacaoConta(situacao, conta) {
+        conta.situacao = situacao;
+        contaApi.alterarConta(conta);
         consultarEPrecherTable();
     }
 
@@ -148,7 +164,19 @@ function ContaList(){
                                 <td className="text-end">
                                     {new Date(conta.dtVencimento).toLocaleDateString('pt-BR').slice(0, 10)}
                                 </td>
-                                <td className="text-end">{conta.situacao}</td>
+                                <td className="text-end">
+                                    <Col sm="8">
+                                        <Form.Select
+                                            value={conta.situacao}
+                                            onChange={(e) => atualizaSituacaoConta(e.target.value, conta)}
+                                            className={`situacao-${conta.situacao.toLowerCase()}`}  // Aplica a classe conforme o valor
+                                        >
+                                            <option className="pg-red"  value="Pendente">Pendente</option>
+                                            <option className="pg-green" value="Paga">Paga</option>
+                                            <option value="Vencida">Vencida</option>
+                                        </Form.Select>
+                                    </Col>
+                                </td>
                                 <td>
                                     <Stack direction="horizontal" gap={1}>
                                         <div className="ms-auto">

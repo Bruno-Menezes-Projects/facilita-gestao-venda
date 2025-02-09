@@ -8,6 +8,47 @@ body {
   background-color: #06102a;
 }
 
+
+.situacao-paga {
+  background-color: green;
+  color: white;
+}
+
+.situacao-vencida {
+  background-color: black;
+  color: white;
+}
+
+.situacao-pendente {
+  background-color: #e10b0b; /* Variedade no hover */
+  color: white;
+}
+
+.situacao-pendente:hover {
+  background-color: red;
+  color: white;
+}
+
+.situacao-paga {
+  background-color: green;
+  color: white;
+}
+
+.situacao-paga:hover {
+  background-color: darkgreen; /* Variedade no hover */
+  color: white;
+}
+
+.situacao-vencida {
+  background-color: black;
+  color: white;
+}
+
+.situacao-vencida:hover {
+  background-color: gray; /* Variedade no hover */
+  color: white;
+}
+
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
