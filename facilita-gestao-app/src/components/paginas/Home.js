@@ -1,10 +1,10 @@
 function Home(){
     return(
-        <div>
+        <div className={"colorWhite"}>
 
-            <h1 className={"colorWhite"}>Facilita Gestão</h1>
+            <h1>Facilita Gestão</h1>
 
-            <div className="introducao colorWhite" >
+            <div className="introducao" >
                 <h2>
                     Proposta do sistema
                 </h2>
