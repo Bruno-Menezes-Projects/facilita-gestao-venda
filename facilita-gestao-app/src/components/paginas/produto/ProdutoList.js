@@ -109,7 +109,13 @@ function ProdutoList(){
             <Container>
                 <br/>
                 <Row>
-                    <h5 className="tituloPesquisa">Pesquisar produto</h5>
+                    <Row className="mb-3">
+                        <Col xl={6}>
+                            <h5 className="text-white">
+                                Pesquisar produto
+                            </h5>
+                        </Col>
+                    </Row>
                     <Col xl={9}>
                         <Form onChange={submitSearchProduto}>
                             <Form.Group className="mb-3" controlId="searchText">

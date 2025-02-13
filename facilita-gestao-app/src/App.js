@@ -14,31 +14,33 @@ function App() {
     <div className="App">
       
       <BrowserRouter>
-        <Container>
+        <Container >
           <Header/>
 
-          <Routes>
-            <Route exact path="" element={<Home/>}  />
+          <div className="conteudo">
+            <Routes>
+              <Route exact path="" element={<Home/>}  />
 
-            <Route path="/produto" >
-              <Route exact path="" element={<ProdutoList/>}  />
-              <Route exact path="list" element={<ProdutoList/>}  />
-              <Route exact path="incluir" element={<ProdutoIncluir/>}  />
-              <Route exact path="alterar/:id" element={<ProdutoAlterar/>}  />
-            </Route>
+              <Route path="/produto" >
+                <Route exact path="" element={<ProdutoList/>}  />
+                <Route exact path="list" element={<ProdutoList/>}  />
+                <Route exact path="incluir" element={<ProdutoIncluir/>}  />
+                <Route exact path="alterar/:id" element={<ProdutoAlterar/>}  />
+              </Route>
 
-            <Route path="/conta" >
-              <Route exact path="" element={<ContaList/>}  />
-              <Route exact path="list" element={<ContaList/>}  />
-              <Route exact path="incluir" element={<ContaIncluir/>}  />
-              <Route exact path="alterar/:id" element={<ContaAlterar/>}  />
-            </Route>
+              <Route path="/conta" >
+                <Route exact path="" element={<ContaList/>}  />
+                <Route exact path="list" element={<ContaList/>}  />
+                <Route exact path="incluir" element={<ContaIncluir/>}  />
+                <Route exact path="alterar/:id" element={<ContaAlterar/>}  />
+              </Route>
 
-          </Routes>
+            </Routes>
+          </div>
 
         </Container>
       </BrowserRouter>
-      
+
     </div>
   );
 }

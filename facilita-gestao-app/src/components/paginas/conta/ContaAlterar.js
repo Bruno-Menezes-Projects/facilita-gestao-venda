@@ -7,7 +7,9 @@ function ContaAlterar(){
     return(
         <div className={"colorWhite"}>
             <br/>
-            <Link to={"/"}>Home</Link> / <Link to={"/conta/list"}>Lista Conta</Link> / Alterar Conta
+            <div className="colorWhite">
+            <Link className="colorWhite" to={"/"}>Home</Link> / <Link to={"/conta/list"}>Lista Conta</Link> / Alterar Conta
+            </div>
             <br/>
 
             <h1>Alterar Conta de Id {id}:</h1>
