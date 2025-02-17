@@ -13,6 +13,7 @@ Na área de contas é possível gerenciar o titular da conta, a descrição, o v
 
 ## Como rodar?
 Para testar o projeto, instale o node caso não tenha, dê um comando "npm install" para instalar as dependências e então dê um comando "npm start", para iniciar a aplicação do site. 
+
 Para o backend, basta executar o ".bat", o arquivo "run_mercado_api.bat" executa a API localmente e o arquivo "run_mercado_api_e_abre_pagina.bat" executa a API e abre uma aba no navegador no link do Swagger, sendo possível testar os métodos implementados na API.
 
 ## Tela Home
