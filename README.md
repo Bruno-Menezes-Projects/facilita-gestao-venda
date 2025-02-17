@@ -11,6 +11,9 @@ Na área de produtos é possível gerenciar o nome do produto, a quantidade em e
 ## Contas
 Na área de contas é possível gerenciar o titular da conta, a descrição, o valor, a data de vencimento e a situação atual (pendende, paga, ou vencida).
 
+## Como rodar?
+Para testar o projeto, instale o node caso não tenha, dê um comando "npm install" para instalar as dependências e então dê um comando "npm start", para iniciar a aplicação do site. Para o backend, basta executar o ".bat", o arquivo que está "executar"
+
 ## Tela Home
 ![image](https://github.com/user-attachments/assets/b129400e-0b1f-40d0-8ea8-dcd242c434d2)
 
