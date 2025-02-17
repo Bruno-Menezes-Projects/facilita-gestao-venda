@@ -1,4 +1,4 @@
-# mercado-pw
+# Facilita Gesão: um site para auxiliar no controle de estoques e contas a pagar
 Projeto de Programação Web, com API em Java e Spring Boot e FrontEnd em React.
 
 Este projeto tem como objetivo, ser um facilitador nas atividades de um empreendimento, onde o gestor consegue ter o controle de estoque dos produtos e também o controle de contas a pagar, pagas ou vencidas.
