@@ -5,19 +5,19 @@ Este projeto tem como objetivo, ser um facilitador nas atividades de um empreend
 
 Ele apresenta três telas, a tela Home, com informação sobre o projeto, a tela produtos para gerenciar os produtos, e a tela contas, para gerenciar as contas.
 
-##Produtos
+## Produtos
 Na área de produtos é possível gerenciar o nome do produto, a quantidade em estoque, a quantidade mínima esperada, sendo que através da quantidade mínima, é possível visualizar alertas informando sobre qual a situação da quantidade atual em relação ao mínimo esperado.
 
-##Contas
+## Contas
 Na área de contas é possível gerenciar o titular da conta, a descrição, o valor, a data de vencimento e a situação atual (pendende, paga, ou vencida).
 
-##Tela Home
+## Tela Home
 ![image](https://github.com/user-attachments/assets/b129400e-0b1f-40d0-8ea8-dcd242c434d2)
 
-#Tela Produtos
+## Tela Produtos
 ![image](https://github.com/user-attachments/assets/6f357326-98a0-45f9-a38e-c12bb13e6d07)
 
-#Tela Contas
+## Tela Contas
 ![image](https://github.com/user-attachments/assets/aaa5073f-927b-4dc6-b1c6-09160f865917)
 
 
